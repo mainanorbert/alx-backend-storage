@@ -6,11 +6,11 @@ BEGIN
 	DECLARE total_proj INT;
 
 	SELECT SUM(score), COUNT(DISTINCT project_id)
-	INTO sum_score, total_proj
+	INTO total_score, total_proj
 	FROM corrections
-	WHERE correction.user_id = user_id;
+	WHERE corrections.user_id = user_id;
 	UPDATE users
-	SET average_score = IFNULL(sum_score / total_proj, 0)
+	SET users.average_score = IFNULL(total_score / total_proj, 0)
 	WHERE users.id = user_id;
 END;//
 DELIMITER ;
