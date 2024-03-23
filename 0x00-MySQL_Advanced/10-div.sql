@@ -10,7 +10,7 @@ BEGIN
 	IF b = 0 THEN
 		RETURN quotient;
 	ELSE
-		quotient = a / b;
+		SET quotient = a / b;
 		RETURN quotient;
 	END IF;
 END; //
