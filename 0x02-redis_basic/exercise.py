@@ -8,6 +8,20 @@ from typing import Union, Optional, Callable
 from functools import wraps
 
 
+def call_history(method: Callable) -> Callable:
+    """Storing lists"""
+    @wraps(method)
+    def wrapper(self, *args, **kwargs):
+        """function storing lists"""
+        input_key = method.__qualname__ + ":inputs"
+        output_key = method.__qualname__ + ":outputs"
+        self._redis.rpush(input_key, str(args))
+        output = method(self, *args, **kwargs)
+        self._redis.rpush(output_key, str(output))
+        return output
+    return wrapper
+
+
 def count_calls(method: Callable) -> Callable:
     """. Incrementing values"""
     @wraps(method)
