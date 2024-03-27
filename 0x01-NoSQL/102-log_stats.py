@@ -24,7 +24,7 @@ def show_logs():
     print(f"{status_count} status check")
     ips = [log['ip'] for log in nginx_collection.find()]
     top_ips = Counter(ips).most_common(10)
-    print("IPS:")
+    print("IPs:")
     for ip, count in top_ips:
         print(f"\t{ip}: {count}")
 
