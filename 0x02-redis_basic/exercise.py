@@ -42,6 +42,7 @@ class Cache:
         self._redis.flushdb()
 
     @count_calls
+    @call_history
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """function takes a data argument and returns a string"""
         key = str(uuid.uuid4())
