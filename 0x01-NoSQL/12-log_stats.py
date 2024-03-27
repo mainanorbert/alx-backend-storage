@@ -22,5 +22,5 @@ def show_logs():
         print(f"\tmethod {method}: {count}")
     print(f"{status_count} status check")
 
-
-show_logs()
+if __name__ == "__main__":
+    show_logs()
